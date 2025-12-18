@@ -1,0 +1,36 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v3
+
+    - name: Set up ROS 2 Humble
+      uses: ros-tooling/setup-ros@v0.2
+      with:
+        distribution: humble
+
+    - name: Install dependencies
+      run: |
+        sudo apt update
+        sudo apt install -y python3-colcon-common-extensions python3-rosdep
+        rosdep init || true
+        rosdep update
+        rosdep install --from-paths src --ignore-src -r -y
+
+    - name: Build workspace
+      run: colcon build --symlink-install
+
+    - name: Run tests
+      run: colcon test && colcon test-result --verbose
