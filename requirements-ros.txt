@@ -1,5 +1,0 @@
-ultralytics==8.2.0
-opencv-python-headless>=4.8.0
-# CARLA Python API: use available PyPI version (closest newer patch). 0.9.16 is available; 0.9.14 is not.
-carla==0.9.16
-# torch + torchvision + torchaudio pulled via explicit install step
