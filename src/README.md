@@ -92,7 +92,7 @@ Before adding/editing a package please review the following sections:
 For specific package information, please see its respective README.
 > **IMPORTANT:** <span style="color: orange;">Currently, packages contain mostly placeholder/legacy content, and are not in a working state.</span>
 
-> **IMPORTANT:** <span style="color: orange;">Docker in this workspace is also legacy.</span>
+> **IMPORTANT:** <span style="color: orange;">Docker is not yet fully configured for this new src layout.</span>
 
 ## General Overview
 
