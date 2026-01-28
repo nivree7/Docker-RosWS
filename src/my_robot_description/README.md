@@ -12,7 +12,7 @@ Stores robots URDF/Xacro, meshes, RViz config, and launches `robot_state_publish
 
 ### Launch Files
 * `rsp.launch.py`
-    * Placeholder
+    * Proiding base functionality
 
 ### Config Files
 * `my_robot.rviz`
@@ -26,9 +26,17 @@ Stores robots URDF/Xacro, meshes, RViz config, and launches `robot_state_publish
 ### Interfaces (msg/, srv/, action/)
 
 ### Assets (urdf/, meshes/, maps/)
-* `urdf/`
-    * `my_robot.urdf.xacro`
-        * Placeholder
+* `xacro/`
+    * `camera.xacro`
+    * `gazebo_control.xacro`
+    * `gps.xacro`
+    * `imu.xacro`
+    * `inertial_macros.xacro`
+    * `lidar_3d.xacro`
+    * `lidar.xacro`
+    * `robot_core.xacro`
+    * `robot.urdf.xacro`
+    * `ros2_control.xacro`
 
 ## Executables & Nodes
 

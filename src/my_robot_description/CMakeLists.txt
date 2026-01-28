@@ -13,9 +13,9 @@ find_package(ament_cmake REQUIRED)
 
 # find non-code files
 install(DIRECTORY
-  launch
   config
-  urdf
+  launch
+  xacro
   DESTINATION share/${PROJECT_NAME}
 )
 

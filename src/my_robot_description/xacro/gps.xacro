@@ -1,0 +1,46 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+    
+    <joint name="gps_joint" type="fixed">
+        <parent link="base_link"/>
+        <child link="gps_link"/>
+        <origin xyz="0 0 0.1" rpy="0 0 0"/>
+    </joint>
+    
+    <link name="gps_link">
+        <!-- <sensor name="navsat" type="navsat">
+            <always_on>true</always_on>
+            <update_rate>1</update_rate>
+            <topic>$(arg namespace)/gps/fix</topic>
+            <gz_frame_id>gps_link</gz_frame_id>
+            <navsat>
+                <position_sensing>
+                    <horizontal>
+                        <noise type="gaussian">
+                            <mean>0.0</mean>
+                            <stddev>0.0</stddev>
+                        </noise>
+                    </horizontal>
+                    <vertical>
+                        <noise type="gaussian">
+                                <mean>0.0</mean>
+                                <stddev>0.0</stddev>
+                        </noise>
+                    </vertical>
+                </position_sensing>
+            </navsat>
+        </sensor> -->
+    </link>
+    <gazebo reference="gps_link">
+        <sensor name="gps_sensor" type="gps">
+            <always_on>true</always_on>
+            <update_rate>1.0</update_rate>
+            <plugin name="gps_controller" filename="libgazebo_ros_gps_sensor.so">
+                <ros>
+                    <remapping>~/out:=/gps/fix</remapping>
+                </ros>
+                <frame_name>gps_link</frame_name>
+            </plugin> 
+        </sensor>
+    </gazebo>
+</robot>

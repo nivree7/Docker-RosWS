@@ -12,11 +12,13 @@ Contains Gazebo worlds, robot models, sim helper scripts, & launch files for sim
 
 ### Launch Files
 * `gazebo.launch.py`
-    * Placeholder
+    * Providing base functionality
 
 ### Config Files
 * `controllers.yaml`
-    * Placeholder
+    * Providing base functionality
+* `gazebo_params.yaml`
+    * Providing base functionality
 
 ### Source Files
 > **Note:** May not use local source files?
@@ -39,10 +41,27 @@ Contains Gazebo worlds, robot models, sim helper scripts, & launch files for sim
 
 ## Executables & Nodes
 
-### Nodes
+### Local Nodes
 > **Note:** May not use local nodes?
 * `<example_node>`
     * **Source File:** `<example/source.file>`
-    * **Desc:** 
+    * **Desc:**
+
+### External Nodes
+* `spawn_entity`
+    * **Source Package:** `gazebo_ros`
+    * **Desc:**
+
+* `diff_drive_spawner`
+    * **Source Package:** `controller_manager`
+    * **Desc:**
+
+* `joint_broad_spawner`
+    * **Source Package:** `controller_manager`
+    * **Desc:**
+
+* `twist_stamper`
+    * **Source Package:** `twist_stamper`
+    * **Desc:**
 
 ### Executables

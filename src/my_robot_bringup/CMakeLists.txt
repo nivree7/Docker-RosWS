@@ -13,8 +13,8 @@ find_package(ament_cmake REQUIRED)
 
 # find non-code files
 install(DIRECTORY
-  launch
   config
+  launch
   DESTINATION share/${PROJECT_NAME}
 )
 

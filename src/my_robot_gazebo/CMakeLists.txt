@@ -9,14 +9,15 @@ endif()
 find_package(ament_cmake REQUIRED)
 # uncomment the following section in order to fill in
 # further dependencies manually.
-# find_package(<dependency> REQUIRED)
+# find_package( REQUIRED)
 
 # find non-code files
 install(DIRECTORY
-  launch
   config
-  worlds
-  models
+  launch
+  #models
+  #scripts
+  #worlds
   DESTINATION share/${PROJECT_NAME}
 )
 

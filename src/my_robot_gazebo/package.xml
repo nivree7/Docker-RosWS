@@ -12,6 +12,14 @@
   <test_depend>ament_lint_auto</test_depend>
   <test_depend>ament_lint_common</test_depend>
 
+  <!-- Dependencies For gazebo.launch.py -->
+  <exec_depend>ament_index_python</exec_depend>
+  <exec_depend>launch</exec_depend>
+  <exec_depend>launch_ros</exec_depend>
+  <exec_depend>gazebo_ros</exec_depend>
+  <exec_depend>controller_manager</exec_depend>
+  <exec_depend>twist_stamper</exec_depend>
+
   <export>
     <build_type>ament_cmake</build_type>
   </export>

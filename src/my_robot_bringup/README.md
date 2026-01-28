@@ -14,7 +14,8 @@ Contains **ONLY** **top-level** launch files & **high-level** config files to st
 * `real_bringup.launch.py`
     * Placeholder
 * `sim_bringup.launch.py`
-    * Placeholder
+    * **NOT FINISHED**
+    * **Currently includes:** rsp.launch.py, and gazebo.launch.py
 
 ### Config Files
 * `real_bringup.launch.py`
