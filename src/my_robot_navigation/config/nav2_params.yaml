@@ -5,7 +5,7 @@ local_costmap:
   ros__parameters:
     # --- Basic Config ---
     global_frame: odom      # Map origin (Mapless: Use odom as the global frame, odom is wherever robot first started.)
-    robot_base_frame: hero  # Base coordinate frame (physically moves w/ robot, frame hero is robot)
+    robot_base_frame: base_link  # Base coordinate frame (physically moves w/ robot)
     rolling_window: true    # Rolling costmap (Local costmap always rolls (moves to follow robot). So costmap will stay centered on hero)
     width: 10               # Width of costmap
     height: 10              # Height of costmap
@@ -25,9 +25,9 @@ local_costmap:
       # --- Fused Cloud Config ---
       fused_cloud:
         # --- Subcription Topic ---
-        topic: "/carla/hero/fused_objects"  # topic from sensor_fusion.py
+        topic: "fused_cloud"  # topic from sensor_fusion.py
         data_type: "PointCloud2"            # Expected data type for layer to recieve (PointCloud2 or LaserScan)
-        sensor_frame: "hero"                # Frame that sensor data is relative to
+        sensor_frame: "base_link"                # Frame that sensor data is relative to
         obstacle_max_range: 20.0            # Max obstacle detection range
         obstacle_min_range: 0.1             # Min obstacle detection range
 
@@ -46,7 +46,7 @@ global_costmap:
   ros__parameters:
     # --- Basic Config ---
     global_frame: odom
-    robot_base_frame: hero
+    robot_base_frame: base_link
     rolling_window: true
     width: 200              # Different than in local costmap params       
     height: 200             # Different than in local costmap params
@@ -61,9 +61,9 @@ global_costmap:
       plugin: "nav2_costmap_2d::ObstacleLayer"
       observation_sources: "fused_cloud"
       fused_cloud:
-        topic: "/carla/hero/fused_objects"
+        topic: "fused_cloud"
         data_type: "PointCloud2"
-        sensor_frame: "hero"
+        sensor_frame: "base_link"
         obstacle_max_range: 50.0            # Different than in local costmap params
         obstacle_min_range: 0.1
     
@@ -82,7 +82,7 @@ planner_server:
     plugins: ["GridBased"]  # Planner plugin/s list
     # --- GridBased Plugin ---
     GridBased:
-      plugin: "nav2_navfn_planner::NavFnPlanner"  # NavFnPlanner (uses an algorithm based on A*
+      plugin: "nav2_navfn_planner::NavFnPlanner"  # NavFnPlanner (uses an algorithm based on A*)
       tolerance: 0.5  # Search tolerance radius (Acceptable area around original waypoint for planner to select new waypoint, incase obstructed)
 
 # --- Controller Server Parameters ---
@@ -95,9 +95,9 @@ controller_server:
       plugin: "nav2_regulated_pure_pursuit_controller::RegulatedPurePursuitController" # RegulatedPurePursuitController, outputs for AckermannDrive robot
       
       # --- Subscription Topics ---
-      odom_topic: "/carla/hero/odometry"          # Odometry topic, will read robots current position & speed
+      odom_topic: "odom"          # Odometry topic, will read robots current position & speed
       # --- Publishing Topics ---
-      command_topic: "/carla/hero/ackermann_cmd"  # Command topic, will publish steering and speed commands to
+      command_topic: "ackermann_cmd"  # Command topic, will publish steering and speed commands to
       
       # --- Vehicle Model & Algorithm Tuning ---
       wheel_base: 1.63                            # Distance between front & rear axles
@@ -133,7 +133,7 @@ behavior_server:
 bt_navigator:
   ros__parameters:
     global_frame: odom
-    robot_base_frame: hero
+    robot_base_frame: base_link
     # --- Behavior Tree Skills ---
     # Nodes or "skills" behavior tree is allowed to use
     plugin_lib_names:
