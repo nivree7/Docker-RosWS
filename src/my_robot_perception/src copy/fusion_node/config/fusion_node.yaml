@@ -1,0 +1,30 @@
+fusion_node:
+  ros__parameters:
+    frames:
+      lidar_frame: os_sensor                        # was 'os_lidar' (wrong)
+      camera_frame: zed_left_camera_optical_frame   # was 'zed_left_camera_frame_optical' (wrong)
+      base_frame: base_link
+
+    topics:
+      lidar_detections: /lidar/detections3d
+      camera_detections3d: /camera/detections3d
+      camera_info: /zed/zed_node/left/camera_info
+      camera_image: /zed/zed_node/left/image_rect_color
+
+    outputs:
+      fused_enriched_clusters: /fusion/enriched_clusters
+      fused_markers: /fusion/markers
+      fused_debug_image: /fusion/debug_image
+
+    sync:
+      queue_size: 15       # larger queue to handle LiDAR ~10Hz vs camera ~7-15Hz rate mismatch
+      max_time_difference_ms: 100
+
+    association:
+      max_centroid_distance_m: 2.5   # gate: reject pairs further apart than this
+      association_frame: os_sensor   # transform camera detections to lidar frame for matching
+
+    visualization:
+      publish_debug_image: true
+      min_depth_m: 0.5
+      max_depth_m: 30.0
