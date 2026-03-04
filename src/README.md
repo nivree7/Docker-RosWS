@@ -317,7 +317,7 @@ Here, you will add any **ROS/ament** dependencies (packages) used.
     * (IF applicable) Add **launch**, **config**, **description**, and **map/world files** paths here **using `os` and `glob`**.  
     * **Ex:** Copy all launch files (ending in launch.py) to package's share directory  
     ``` py
-    (os.path.join('share', package_name, 'launch'), glob(os.path.join('launch', '*launch.py')))
+    (os.path.join('share', package_name, 'launch'), glob('launch/*launch.py'))
     ```
     > **Note:** <span style="color: yellow;">Please keep in mind, `ament_python` does not automatically grab all files in a folder when installing files like `ament_cmake` does. It's explicit.</span>
 3. **Including Executables**
@@ -376,7 +376,9 @@ In the **Python package directory**
     >*(directory with same name as package, e.g, `my_robot_package/`, where `__init__.py` is contained.)*  
 
     in a relevantly named subfolder  
-    >(e.g., `my_robot_package/nodes`, `my_robot_package/utils`).
+    >(e.g., `my_robot_package/nodes`, `my_robot_package/utils`).  
+    
+    >**REMEMBER:** to include `__init__.py` in any subfolders
 
 * **Simple Auxiliary Scripts (Py/Bash):** In top level `scripts/` folder.
 
