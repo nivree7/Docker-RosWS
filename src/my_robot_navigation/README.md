@@ -39,9 +39,6 @@ Contains Nav2 specific config & launch files. Provides Navigation behavior.
 ### Interfaces (msg/, srv/, action/)
 
 ### Assets (urdf/, meshes/, maps/)
-* `data/`
-    * `waypoints.csv`
-        * placeholder
 
 ## Executables & Nodes
 

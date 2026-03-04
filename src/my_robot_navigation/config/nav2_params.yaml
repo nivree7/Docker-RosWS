@@ -4,7 +4,7 @@
 local_costmap:
   ros__parameters:
     # --- Basic Config ---
-    global_frame: odom      # Map origin (Mapless: Use odom as the global frame, odom is wherever robot first started.)
+    global_frame: odom      # Use odom to accurately deal with immediate obstacles
     robot_base_frame: base_link  # Base coordinate frame (physically moves w/ robot)
     rolling_window: true    # Rolling costmap (Local costmap always rolls (moves to follow robot). So costmap will stay centered on hero)
     width: 10               # Width of costmap
@@ -45,11 +45,11 @@ local_costmap:
 global_costmap:
   ros__parameters:
     # --- Basic Config ---
-    global_frame: odom
+    global_frame: map        # Use map frame (not IGVC map memorization) to deal with high level
     robot_base_frame: base_link
     rolling_window: true
-    width: 200              # Different than in local costmap params       
-    height: 200             # Different than in local costmap params
+    width: 50              # Different than in local costmap params       
+    height: 50             # Different than in local costmap params
     resolution: 0.2         # Different than in local costmap params
 
     # --- Plugins ---
@@ -113,6 +113,7 @@ controller_server:
       max_steering_angle: 0.785                   # Max physical steering angle (radians)
       steering_angle_velocity: 0.5                # Max speed steering angle can change (radians/second)
       xy_goal_tolerance: 0.5                      # How close robot needs to get to waypoint coordinate for success
+      yaw_goal_tolerance: 3.14                    # How far in radians, goal orientation can be from actual (3.14 for 180+180=360 because any orientation is fine)
 
 # --- Behavior Server Parameters ---
 # Contains simple non planning actions robot can perform
@@ -132,7 +133,7 @@ behavior_server:
 # Brain/manager of entire NAV2 system
 bt_navigator:
   ros__parameters:
-    global_frame: odom
+    global_frame: map
     robot_base_frame: base_link
     # --- Behavior Tree Skills ---
     # Nodes or "skills" behavior tree is allowed to use
@@ -149,13 +150,3 @@ smoother_server:
     use_smoother: false   # Smoother Toggle (Currently off for simplicity)
     # --- Smoother Plugins ---
     smoother_plugins: []
-
-# --- Waypoint Follower Parameters ---
-waypoint_follower:
-  ros__parameters:
-    loop_rate: 20           # How fast waypoint follower checks its status (Hz)
-    stop_on_failure: false  # If robot fails to reach waypoint, it will move on and continue with the next
-    # --- Action Plugins ---
-    # Plugins waypoint follower can execute when arriving at waypoint
-    plugin_lib_names:
-    - nav2_waypoint_follower_wait_at_waypoint_plugin  # Wait at waypoint plugin (default no wait time, can specify for each waypoint)
