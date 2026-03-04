@@ -1,0 +1,5 @@
+# --- Waypoint Follower Node Parameters ---
+# TODO: Make params from variables in mission_launch.py
+waypoint_follower_params:
+  ros__parameters:
+    target_waypoints: [42.668100, -83.216900, 42.668200, -83.216800] # [lat1, long1, lat2, long2, ..., latn, longn]
