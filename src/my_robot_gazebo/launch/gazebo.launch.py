@@ -15,7 +15,7 @@ def generate_launch_description():
     # --- 1. Find Paths ---
     my_robot_gazebo_share_dir = get_package_share_directory('my_robot_gazebo')
 
-    world_file_path = os.path.expanduser('~/.gazebo/models/terrain/model.sdf')
+    world_file_path = os.path.join(my_robot_gazebo_share_dir, 'worlds', 'terrain', 'model.sdf')
 
     gazebo_params_file = os.path.join(
         my_robot_gazebo_share_dir, 'config', 'gazebo_params.yaml'

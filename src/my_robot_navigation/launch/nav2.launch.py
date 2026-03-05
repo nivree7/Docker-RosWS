@@ -18,6 +18,7 @@ def generate_launch_description():
     # --- 2. Define Launch Arguments ---
     use_map_server = LaunchConfiguration('use_map_server', default='False')  # Not using traditional static maps, so don't try and preload
     use_amcl = LaunchConfiguration('use_amcl', default='False')              # Not localizing on a static map
+    use_sim_time = LaunchConfiguration('use_sim_time', default='False')
 
     # --- 3. Launch NAV2 Bringup ---
     # Define the main NAV2 launch file (bringup_launch.py), with custom launch arguments
@@ -29,6 +30,7 @@ def generate_launch_description():
             'params_file': nav2_params_file,
             'use_map_server': use_map_server,
             'use_amcl': use_amcl,
+            'use_sim_time': use_sim_time
         }.items(),
     )
 

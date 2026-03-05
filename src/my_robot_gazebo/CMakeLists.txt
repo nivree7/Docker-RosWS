@@ -17,7 +17,7 @@ install(DIRECTORY
   launch
   #models
   #scripts
-  #worlds
+  worlds
   DESTINATION share/${PROJECT_NAME}
 )
 
