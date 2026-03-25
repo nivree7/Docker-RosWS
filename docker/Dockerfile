@@ -1,6 +1,7 @@
 # Steps to build:
 # 1. "sudo docker build -f docker/Dockerfile -t ros2_workspace ."
 # 2. "sudo docker run -it --rm -v $(pwd):/workspace ros2_workspace"
+# MAYBE THIS INSTEAD: "sudo docker run -it --rm   -v $(pwd)/src:/workspace/src   --device=/dev/serial/by-id/usb-Arduino__www.arduino.cc__0042_03536373332351C06150-if00   ros2_workspace"
 # 3. "source install/setup.bash"
 
 # Use the official ROS 2 Humble base image
@@ -16,6 +17,7 @@ RUN apt-get update && apt-get install -y \
     python3-colcon-common-extensions \
     python3-rosdep \
     python3-argcomplete \
+    libserial-dev \
     && rm -rf /var/lib/apt/lists/*
 
 # Initialize rosdep (skip init if already initialized)

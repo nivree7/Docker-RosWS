@@ -40,11 +40,18 @@ def generate_launch_description():
     )
 
     # --- 4. Define Nodes
+    #control_node = Node(
+    #    package='controller_manager',
+    #    executable='ros2_control_node',
+    #    parameters=[robot_description,
+    #                ros2_control_params]
+    #)
+
     control_node = Node(
         package='controller_manager',
         executable='ros2_control_node',
-        parameters=[robot_description,
-                    ros2_control_params]
+        parameters=[ros2_control_params],
+        remappings=[('~/robot_description', '/robot_description')]
     )
     
     diff_drive_spawner = Node(
@@ -62,7 +69,7 @@ def generate_launch_description():
     delay_diff_drive_spawner_after_joint_broad_spawner = RegisterEventHandler(
         event_handler = OnProcessExit(
             target_action = joint_broad_spawner,
-            on_start = [diff_drive_spawner]
+            on_exit = [diff_drive_spawner]
         )
     )
 

@@ -1,0 +1,2 @@
+get usb port name
+ls -l /dev/serial/by-path/
