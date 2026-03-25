@@ -185,7 +185,7 @@ Here, you will add any **ROS/ament** dependencies (packages) used.
     * `<test_depend>...</test_depend>`
 5. **Build Tool Dependencies**  
     Usually already included from `ros2 pkg create` command.
-    * `<build_tool_depend>...</build_tool_depend>`
+    * `<buildtool_depend>...</buildtool_depend>`
 6. **Documentation Dependencies**  
     If including documentation tools like `Doxygen` (TBD, but may include this)
     * `<doc_depend>...</doc_depend>`
