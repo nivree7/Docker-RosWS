@@ -32,9 +32,9 @@ def main():
     navigator = BasicNavigator()
 
     # --- Get GPS Target Waypoints ---
-    # Create temporaroy helper node to use params
+    # Create temporary helper node to use params
     param_node = rclpy.create_node('waypoint_follower_params')
-    # declare parameter for target waypoints (flattened array of floats: (lat1, long1, lat2, long2))
+    # Declare parameter for target waypoints (flattened array of floats: (lat1, long1, lat2, long2))
     param_node.declare_parameter('target_waypoints', [0.0, 0.0, 0.0, 0.0])
     # Get target waypoints from mission_config.yaml
     flat_waypoints = param_node.get_parameter('target_waypoints').get_parameter_value().double_array_value
@@ -62,7 +62,7 @@ def main():
     points_pose.pose.orientation.w = 1.0  # Use "Identity" quaternion, does not matter (see goal_yaw_tolerance in nav2 config)                    
     for pt in target_gps_waypoints:
         request = FromLL.Request()
-        request.ll_point.latitude = float(pt)
+        request.ll_point.latitude = float(pt[0])
         request.ll_point.longitude = float(pt[1])
         request.ll_point.altitude = 0.0
 
