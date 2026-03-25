@@ -1,0 +1,11 @@
+teleop_twist_joy_node:
+  ros__parameters:
+    axis_linear: 1  # Left thumb stick vertical for linear movement
+    scale_linear: 0.5 # Max speed in m/s
+    scale_linear_turbo: 1.5 # Max turbo speed in m/s
+
+    axis_angular: 0  # Left thumb stick horizontal for turning
+    scale_angular: 0.5  # Max turning speed in rad/s
+
+    enable_button: 5  # Right trigger button to drive normally
+    enable_turbo_button: 2  # Left trigger button to enable Turbo mode

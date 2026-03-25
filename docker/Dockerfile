@@ -1,3 +1,8 @@
+# Steps to build:
+# 1. "sudo docker build -f docker/Dockerfile -t ros2_workspace ."
+# 2. "sudo docker run -it --rm -v $(pwd):/workspace ros2_workspace"
+# 3. "source install/setup.bash"
+
 # Use the official ROS 2 Humble base image
 FROM ros:humble
 
@@ -26,10 +31,12 @@ RUN mkdir -p /workspace/src
 COPY . /workspace/
 
 # Install dependencies
-RUN rosdep install --from-paths src --ignore-src -r -y
+#RUN rosdep install --from-paths src --ignore-src -r -y
+RUN apt-get update && rosdep install --from-paths src --ignore-src -r -y && rm -rf /var/lib/apt/lists/*
 
 # Build the workspace
-RUN colcon build --symlink-install
+# RUN colcon build --symlink-install
+RUN /bin/bash -c "source /opt/ros/humble/setup.bash && colcon build --symlink-install"
 
 # Source the workspace setup
 RUN echo "source /workspace/install/setup.bash" >> /root/.bashrc
