@@ -4,7 +4,7 @@
     <joint name="camera_joint" type="fixed">
         <parent link="chassis"/>
         <child link="camera_link"/>
-        <origin xyz="0.905 0 0.4" rpy="0 0 0"/>
+        <origin xyz="0.4 0 0.65" rpy="0 0 0"/>
     </joint>
 
     <link name="camera_link">
@@ -32,28 +32,29 @@
 
     <link name="camera_link_optical"></link>
 
-
-    <gazebo reference="camera_link">
-        <material>Gazebo/Red</material>
-        <sensor name="camera" type="camera">
-            <pose>0 0 0 0 0 0</pose>
-            <visualize>true</visualize>
-            <update_rate>10</update_rate>
-            <camera>
-                <horizontal>1.089</horizontal>
-                <image>
-                    <format>R8G8B9</format>
-                    <width>640</width>
-                    <height>480</height>
-                </image>
-                <clip>
-                    <near>0.05</near>
-                    <far>8.0</far>
-                </clip>
-            </camera>
-            <plugin name="camera_controller" filename="libgazebo_ros_camera.so">
-                <frame_name>camera_link_optical</frame_name>
-            </plugin>
-        </sensor>
-    </gazebo>
+    <xacro:if value="$(arg sim_mode)">
+        <gazebo reference="camera_link">
+            <material>Gazebo/Red</material>
+            <sensor name="camera" type="camera">
+                <pose>0 0 0 0 0 0</pose>
+                <visualize>true</visualize>
+                <update_rate>10</update_rate>
+                <camera>
+                    <horizontal>1.089</horizontal>
+                    <image>
+                        <format>R8G8B9</format>
+                        <width>640</width>
+                        <height>480</height>
+                    </image>
+                    <clip>
+                        <near>0.05</near>
+                        <far>8.0</far>
+                    </clip>
+                </camera>
+                <plugin name="camera_controller" filename="libgazebo_ros_camera.so">
+                    <frame_name>camera_link_optical</frame_name>
+                </plugin>
+            </sensor>
+        </gazebo>
+    </xacro:if>    
 </robot>

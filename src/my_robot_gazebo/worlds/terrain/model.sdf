@@ -1,0 +1,40 @@
+<?xml version="1.0" ?>
+<sdf version="1.6" xmlns:xacro="http://www.ros.org/wiki/xacro">
+	<world name="default">
+    		<spherical_coordinates>
+      			<surface_model>EARTH_WGS84</surface_model>
+      			<world_frame_orientation>ENU</world_frame_orientation>
+      			<latitude_deg>42.67</latitude_deg> <!--42.668056-->
+      			<longitude_deg>-83.22</longitude_deg> <!---83.216944-->
+      			<elevation>0</elevation>
+      			<heading_deg>0</heading_deg>
+    		</spherical_coordinates>
+    		<model name="terrain">
+        	<pose>0 0 0 0 0 0</pose>
+        	<static>true</static>
+        	<link name="body">
+        	    <visual name="visual">
+        	        <geometry>
+        	            <mesh>
+        	                <uri>model://terrain/media/course_1.dae</uri>
+        	            </mesh>
+        	        </geometry>
+        	        <material>
+        	            <script>
+        	                <uri>model://terrain/media/scripts/terrain.material</uri>
+        	                <uri>model://terrain/media/textures/texture.png</uri>
+				<name>TerrainMat</name>
+        	            </script>
+        	        </material>
+        	    </visual>
+        	    <collision name="collision">
+        	        <geometry>
+        	            <mesh>
+        	                <uri>model://terrain/media/course_1.dae</uri>
+        	            </mesh>
+        	        </geometry>
+        	    </collision>
+        	</link>
+	    </model>
+	</world>
+</sdf>
